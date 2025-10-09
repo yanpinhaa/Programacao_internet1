@@ -23,6 +23,16 @@ if(isset($_POST['descricao']) && !empty(trim($_POST['descricao']))){
 }
 }
 
+#apagar tarefas
+
+if(isset($_GET['delete'])){
+    $id = intval($_GET['delete']);
+    $sqlDelete = "DELETE FROM tarefas WHERE id = $id";
+
+    if($conn->query(query: $sqlDelete) == TRUE){
+        header(header: "location: todo-list1.php");
+    }
+}
 
 #listar tarefas
 $tarefas = [];
@@ -61,9 +71,10 @@ if($result -> num_rows > 0){
             <?php foreach($tarefas as $tarefa):?>
                 <li>
                     <?php echo $tarefa['descricao']?>
+                    <a href="todo-list1.php?delete=<?php echo $tarefa['id']?>">Excluir</a>
                 </li>
 
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </ul>
     <?php else:?>
     <h3>Não tem tarefas</h3>
