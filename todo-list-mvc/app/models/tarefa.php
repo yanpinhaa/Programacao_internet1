@@ -11,7 +11,7 @@ class Tarefa{
 
     ## Listar 
 
-    public function listarAtivas(){
+    public function listar() {
         $tarefas = [];
         $sql = "SELECT * FROM tarefas ORDER BY data_criacao DESC"; 
         $resultado = $this->conn->query($sql); 
@@ -23,10 +23,6 @@ class Tarefa{
         }
 
         return $tarefas;
-    }
-
-    public function listar() {
-    return []; 
     }
 
     ## Criar 
