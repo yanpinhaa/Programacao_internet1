@@ -1,3 +1,5 @@
 <?php
-require_once __DIR__ . '/Controller/LogoutController.php';
-logout_controller();
+require_once __DIR__ . '/app/Controller/LogoutController.php';
+
+$logout = new LogoutController();
+$logout->logout();

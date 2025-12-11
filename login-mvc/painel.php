@@ -1,2 +1,2 @@
 <?php
-require_once __DIR__ . '/View/PainelView.php';
+require_once __DIR__ . '/app/View/PainelView.php';

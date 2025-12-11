@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../Controller/LoginController.php';
 
-$erro = login_controller();
+$login = new LoginController();
+$erro = $login->authenticate();
 ?>
 
 <!DOCTYPE html>
@@ -18,15 +19,17 @@ $erro = login_controller();
     <p style="color:red;"><?= $erro ?></p>
 <?php endif; ?>
 
-<form action="" method="POST">
+<form method="POST">
     <p>
         <label>E-mail</label>
         <input type="text" name="email">
     </p>
+
     <p>
         <label>Senha</label>
         <input type="password" name="senha">
     </p>
+
     <p>
         <button type="submit">Entrar</button>
     </p>

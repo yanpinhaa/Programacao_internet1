@@ -1,20 +1,22 @@
 <?php
 require_once __DIR__ . '/../Model/UserModel.php';
 
-function login_controller() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+class LoginController
+{
+    public function authenticate()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return null;
+        }
 
         $email = $_POST['email'] ?? '';
         $senha = $_POST['senha'] ?? '';
 
-        if (strlen($email) === 0) {
-            return "Preencha seu email.";
-        }
-        if (strlen($senha) === 0) {
-            return "Preencha sua senha.";
-        }
+        if ($email === '') return "Preencha o email.";
+        if ($senha === '') return "Preencha a senha.";
 
-        $usuario = find_user_by_credentials($email, $senha);
+        $userModel = new User();
+        $usuario = $userModel->findByCredentials($email, $senha);
 
         if ($usuario) {
             if (!isset($_SESSION)) session_start();
@@ -28,6 +30,4 @@ function login_controller() {
 
         return "Falha ao logar.";
     }
-
-    return null;
 }
